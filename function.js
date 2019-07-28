@@ -20,6 +20,8 @@ module.exports = function createBezierBuilder(opt) {
     return function bezierCurve(start, c1, c2, end, scale, points) {
         if (!points)
             points = []
+        else
+            points.pop()
 
         scale = typeof scale === 'number' ? scale : 1.0
         var distanceTolerance = PATH_DISTANCE_EPSILON / scale
