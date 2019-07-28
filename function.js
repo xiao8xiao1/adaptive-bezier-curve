@@ -22,6 +22,7 @@ module.exports = function createBezierBuilder(opt) {
             points = []
         else
             points.pop()
+        points.push('C')
 
         scale = typeof scale === 'number' ? scale : 1.0
         var distanceTolerance = PATH_DISTANCE_EPSILON / scale
