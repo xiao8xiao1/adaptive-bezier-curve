@@ -1,9 +1,9 @@
 function clone(point) { //TODO: use gl-vec2 for this
-    return [point[0], point[1]]
+    return {x:point.x, y:point.y}
 }
 
 function vec2(x, y) {
-    return [x, y]
+    return {x:x, y:y}
 }
 
 module.exports = function createBezierBuilder(opt) {
@@ -22,7 +22,7 @@ module.exports = function createBezierBuilder(opt) {
             points = []
         else
             points.pop()
-        points.push('C')
+        // points.push('C')
 
         scale = typeof scale === 'number' ? scale : 1.0
         var distanceTolerance = PATH_DISTANCE_EPSILON / scale
@@ -37,14 +37,14 @@ module.exports = function createBezierBuilder(opt) {
 
     function begin(start, c1, c2, end, points, distanceTolerance) {
         points.push(clone(start))
-        var x1 = start[0],
-            y1 = start[1],
-            x2 = c1[0],
-            y2 = c1[1],
-            x3 = c2[0],
-            y3 = c2[1],
-            x4 = end[0],
-            y4 = end[1]
+        var x1 = start.x,
+            y1 = start.y,
+            x2 = c1.x,
+            y2 = c1.y,
+            x3 = c2.x,
+            y3 = c2.y,
+            x4 = end.x,
+            y4 = end.y
         recursive(x1, y1, x2, y2, x3, y3, x4, y4, points, distanceTolerance, 0)
         points.push(clone(end))
     }
